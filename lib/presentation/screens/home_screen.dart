@@ -7,6 +7,7 @@ import 'package:cinematic_weather/core/errors/failures.dart';
 import 'package:cinematic_weather/core/theme/app_theme.dart';
 import 'package:cinematic_weather/domain/entities/weather_entity.dart';
 import 'package:cinematic_weather/presentation/providers/weather_provider.dart';
+import 'package:cinematic_weather/presentation/widgets/about_sheet.dart';
 import 'package:cinematic_weather/presentation/widgets/city_search_bar.dart';
 import 'package:cinematic_weather/presentation/widgets/loading_shimmer.dart';
 import 'package:cinematic_weather/presentation/widgets/temperature_display.dart';
@@ -36,6 +37,30 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
+// Search bar + info button used in every state.
+class _TopBar extends StatelessWidget {
+  const _TopBar();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Expanded(child: CitySearchBar()),
+        const SizedBox(width: 8),
+        Semantics(
+          label: 'About this app',
+          button: true,
+          child: IconButton(
+            icon: const Icon(Icons.info_outline, color: AppColors.textSecondary),
+            tooltip: 'About',
+            onPressed: () => showAboutSheet(context),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class _LoadingView extends StatelessWidget {
   const _LoadingView();
 
@@ -53,7 +78,7 @@ class _LoadingView extends StatelessWidget {
                 SizedBox(height: _vPad(context)),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: _hPad(context)),
-                  child: const CitySearchBar(),
+                  child: const _TopBar(),
                 ),
                 const Expanded(child: LoadingShimmer()),
               ],
@@ -99,7 +124,7 @@ class _WeatherView extends ConsumerWidget {
               SizedBox(height: _vPad(context)),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: _hPad(context)),
-                child: const CitySearchBar(),
+                child: const _TopBar(),
               ),
               const Spacer(),
               Padding(
@@ -217,7 +242,8 @@ class _WeatherContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final citySize = AppTextScale.responsive(context, AppTextScale.city, min: 20, max: 40);
+    final citySize =
+        AppTextScale.responsive(context, AppTextScale.city, min: 20, max: 40);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,7 +297,7 @@ class _ErrorView extends StatelessWidget {
               SizedBox(height: _vPad(context)),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: _hPad(context)),
-                child: const CitySearchBar(),
+                child: const _TopBar(),
               ),
               const Spacer(),
               Padding(
@@ -284,7 +310,8 @@ class _ErrorView extends StatelessWidget {
                       ExcludeSemantics(
                         child: Icon(
                           Icons.cloud_off_rounded,
-                          size: AppTextScale.responsive(context, 64, min: 48, max: 80),
+                          size: AppTextScale.responsive(context, 64,
+                              min: 48, max: 80),
                           color: AppColors.textSecondary,
                         ),
                       ),
