@@ -62,7 +62,7 @@ void main() {
     test(
       'given existing model, when copyWith called with new city, then only city changes',
       () {
-        final original = WeatherFixtures.amsterdamModel;
+        const original = WeatherFixtures.amsterdamModel;
         final copy = original.copyWith(cityName: 'London');
 
         expect(copy.cityName, 'London');
@@ -76,7 +76,7 @@ void main() {
     test(
       'given a model, when toJson called then fromJson on result, then roundtrip is lossless',
       () {
-        final original = WeatherFixtures.amsterdamModel;
+        const original = WeatherFixtures.amsterdamModel;
         final json = original.toJson();
         final restored = WeatherModel.fromJson(json);
 
@@ -87,7 +87,7 @@ void main() {
     test(
       'given a model, when toEntity is called, then entity has same field values',
       () {
-        final model = WeatherFixtures.amsterdamModel;
+        const model = WeatherFixtures.amsterdamModel;
         final entity = model.toEntity();
 
         expect(entity.cityName, model.cityName);

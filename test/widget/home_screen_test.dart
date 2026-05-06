@@ -103,8 +103,8 @@ void main() {
     testWidgets(
       'given error state CityNotFoundFailure, when HomeScreen renders, then "not found" and Retry button appear',
       (tester) async {
-        await _pump(tester, AsyncValue.error(
-            const CityNotFoundFailure('Faketown'), StackTrace.empty));
+        await _pump(tester, const AsyncValue.error(
+            CityNotFoundFailure('Faketown'), StackTrace.empty));
         expect(find.textContaining('not found', skipOffstage: false), findsOneWidget);
         expect(find.text('Retry', skipOffstage: false), findsOneWidget);
       },
@@ -113,8 +113,8 @@ void main() {
     testWidgets(
       'given NetworkFailure, when HomeScreen renders, then "No internet" message appears',
       (tester) async {
-        await _pump(tester, AsyncValue.error(
-            const NetworkFailure(), StackTrace.empty));
+        await _pump(tester, const AsyncValue.error(
+            NetworkFailure(), StackTrace.empty));
         expect(find.textContaining('internet', skipOffstage: false), findsOneWidget);
         expect(find.text('Retry', skipOffstage: false), findsOneWidget);
       },
@@ -126,8 +126,8 @@ void main() {
         var retryCalled = false;
         await _pump(
           tester,
-          AsyncValue.error(
-              const CityNotFoundFailure('Faketown'), StackTrace.empty),
+          const AsyncValue.error(
+              CityNotFoundFailure('Faketown'), StackTrace.empty),
           onRetry: () => retryCalled = true,
         );
         await tester.tap(find.text('Retry', skipOffstage: false));

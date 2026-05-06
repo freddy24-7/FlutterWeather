@@ -41,7 +41,7 @@ class _BottomNav extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.backgroundDark,
         border: Border(
-          top: BorderSide(color: Colors.white.withOpacity(0.08)),
+          top: BorderSide(color: Colors.white.withValues(alpha: 0.08)),
         ),
       ),
       child: BottomNavigationBar(

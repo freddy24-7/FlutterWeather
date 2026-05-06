@@ -156,7 +156,7 @@ class _LayerSelector extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
       decoration: BoxDecoration(
-        color: AppColors.backgroundDark.withOpacity(0.85),
+        color: AppColors.backgroundDark.withValues(alpha: 0.85),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -226,15 +226,15 @@ class _CityMarker extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         decoration: BoxDecoration(
-          color: AppColors.backgroundDark.withOpacity(0.85),
+          color: AppColors.backgroundDark.withValues(alpha: 0.85),
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: AppColors.accentBlue, width: 1),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ExcludeSemantics(
-              child: const Icon(Icons.location_on, color: AppColors.accentBlue, size: 14),
+            const ExcludeSemantics(
+              child: Icon(Icons.location_on, color: AppColors.accentBlue, size: 14),
             ),
             const SizedBox(width: 4),
             Flexible(
@@ -274,7 +274,7 @@ class _TempLegend extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: AppColors.backgroundDark.withOpacity(0.88),
+        color: AppColors.backgroundDark.withValues(alpha: 0.88),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -334,9 +334,9 @@ class _MockNotice extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: Colors.orange.withOpacity(0.2),
+          color: Colors.orange.withValues(alpha: 0.2),
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.orange.withOpacity(0.5)),
+          border: Border.all(color: Colors.orange.withValues(alpha: 0.5)),
         ),
         child: const Text(
           'OWM radar layer requires an API key',
